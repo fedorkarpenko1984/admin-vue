@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    // fetch('http://localhost:5000/api/categories/list').then(res => {
+    //     console.log(res.body)
+    // })
+
+    // axios.get('http://localhost:5000/api/categories/list').then(res => {
+    //     console.log(res.data)
+    // })
+
+    //'http://localhost:5000/api/categories/create'
+
+    axios({
+        url: 'http://localhost:5000/api/categories/create',
+        method: 'POST',
+        data: {name: 'TEST'},
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        console.log(res)
+    })
+
+</script>
+</html>
