@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<input type="file" id="file">
+<button id="button">PRESS</button>
+
+</body>
+<script>
+    const input = document.getElementById('file')
+
+    document.getElementById('button').addEventListener('click', () => {
+        const file = input.files[0]
+
+        const reader = new FileReader()
+
+        reader.onloadend = () => {
+
+            const formData = new FormData()
+            formData.append('photo', file)
+            formData.append('test', 'test')
+            formData.append('test2', 'test2')
+
+            console.log(formData)
+
+            axios.post("http://localhost:5000/api/products/create", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            }).then(res => {
+                console.log(res)
+            })
+
+        }
+
+        reader.readAsArrayBuffer(file);
+    })
+
+
+    // axios({
+    //     url: 'http://localhost:5000/api/products/list',
+    //     method: 'POST',
+    //     data: {name: 'TEST'},
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // }).then(res => {
+    //     console.log(res)
+    // })
+
+</script>
+</html>
