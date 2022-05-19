@@ -1,11 +1,11 @@
 <template>
-    <div class="menu" :style="{left}">
+    <div class="menu" :style="{left: this.showMenu ? '0' : '-100%'}">
 
         <button class="btn menu-btn"
                 v-for="route in routes"
                 :key="route.path" @click="navigate(route.path)">{{ route.ru }}</button>
 
-        <img class="close-icon" @click="$store.commit('toggleMenu')" src="@/assets/close-icon.svg" alt="">
+        <img ref="icon" class="close-icon" @click="toggleMenu" src="@/assets/close-icon.svg" alt="">
     </div>
 </template>
 
@@ -18,15 +18,22 @@
         }),
 
         computed: {
-            left() {
-                return this.$store.state.showMenu ? '0' : '-100%'
-            },
+            showMenu() {
+                return this.$store.state.showMenu
+            }
         },
 
         methods: {
             navigate(path) {
                 this.$router.push(path)
                 this.$store.commit('toggleMenu')
+            },
+            toggleMenu() {
+                this.$refs.icon.style.transform = 'rotate(360deg)'
+                setTimeout(() => this.$store.commit('toggleMenu'), 500)
+                setTimeout(() => {
+                    this.$refs['icon'].style.transform = 'rotate(0deg)'
+                }, 1000)
             }
         }
     }
@@ -53,7 +60,8 @@
     color: darkolivegreen;
     font-size: 24px;
     padding: 0px 10px;
-    font-weight: bold;
+    height: 50px;
+    box-shadow: 0px 0px 3px 3px white;
 }
 
 .close-icon {
@@ -61,5 +69,7 @@
     bottom: 20px;
     width: 40px;
     height: 40px;
+    transform: rotate(0deg);
+    transition: all 1s;
 }
 </style>

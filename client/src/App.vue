@@ -1,7 +1,9 @@
 <template>
   <Header />
   <Menu />
-  <router-view/>
+  <div class="my-app-container">
+    <router-view/>
+  </div>
 </template>
 
 <script>
