@@ -6,7 +6,7 @@
 
         <h2 class="mt-10">Новая категория</h2>
 
-        <input placeholder="Введите название" type="text" v-model="newCategory" class="input mt-10">
+        <input @keydown="enterKeyHandler($event)" placeholder="Введите название" type="text" v-model="newCategory" class="input mt-10">
 
         <button class="btn btn-standard mt-20" @click="createCategory">Добавить</button>
 
@@ -32,9 +32,14 @@
             createCategory() {
                 if (this.newCategory.length > 0) {
                     this.$store.dispatch('createCategory', {name: this.newCategory})
+                    this.newCategory = ''
                 } else {
                     console.log('пустая строка')
                 }
+            },
+
+            enterKeyHandler(event) {
+                event.keyCode === 13 && this.createCategory()
             }
         },
 

@@ -45,11 +45,15 @@ export default createStore({
       if (response.status === 204) {
         dispatch('fetchCategories')
       }
+    },
+
+
+    // экшены для товаров
+    fetchProducts: async ({commit}) => {
+      const response = await axios.get(BASE_URL + '/products/list')
+      console.log(response.data)
+      commit('setProducts', response.data)
     }
-
-
-    // экшены для
-
   },
 
 })
