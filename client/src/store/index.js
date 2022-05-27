@@ -27,7 +27,7 @@ export default createStore({
 
   actions: {
 
-    // экшены для категорий(получить весь список, создать и удалить)
+    // экшены для категорий(получить весь список, создать и удалить) =============
     fetchCategories: async ({commit}) => {
       const response = await axios.get(BASE_URL + '/categories/list')
       commit('setCategories', response.data)
@@ -48,12 +48,18 @@ export default createStore({
     },
 
 
-    // экшены для товаров
+    // экшены для товаров (получить весь список, создать и удалить) =====================
     fetchProducts: async ({commit}) => {
       const response = await axios.get(BASE_URL + '/products/list')
-      console.log(response.data)
       commit('setProducts', response.data)
-    }
+    },
+
+    createProduct: async ({dispatch}, payload) => {
+      const response = await axios.post( BASE_URL + '/products/create', payload, {})
+      if (response.status === 201) {
+        dispatch('fetchProducts')
+      }
+    },
   },
 
 })

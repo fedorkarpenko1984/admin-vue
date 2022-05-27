@@ -5,6 +5,7 @@ import Products from "../views/Products";
 import Warehouse from "../views/Warehouse";
 import Sales from "../views/Sales";
 import Additions from "../views/Additions";
+import ProductPage from "../views/ProductPage";
 
 export const routes = [
   {
@@ -35,6 +36,9 @@ export const routes = [
     path: '/additions',
     component: Additions,
     ru: 'Поступления'
+  },
+  {
+    path: '/product/:id', component: ProductPage
   }
 
 ]

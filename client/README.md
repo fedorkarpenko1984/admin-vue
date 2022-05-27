@@ -1,24 +1,35 @@
-# client
+# Клиентская часть приложения
 
-## Project setup
+## Установка зависимостей
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Запуск сервера разработки
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Сборка для production
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Модель данных для product
+```
+0. photo - путь до фото продукта на сервере
+1. name! - название продукта
+2. category! - категория
+3. description - описание
+4. features - особенности продукта
+5. weightOrVolume - масса или объём продукта продукта
+6. peacesPerPack - колличестко штук в упаковке
+7. price - цена за еденицу товара
+8. sale - скидка(размер скидки в %, причина скидки)
+9. stockBalance - статок на складе
+
+при создании каждому товару присваивается уникальный ID - служебное поле,
+не доступное для редактирования пользователю
+
+```

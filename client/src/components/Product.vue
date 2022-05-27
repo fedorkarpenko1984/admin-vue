@@ -1,27 +1,30 @@
 <template>
-    <div class="product">
-        <div style="display: flex; justify-content: space-around">
+    <div class="product" @click="$router.push(`/product/${productProps.id}`)">
+        <div style="display: flex; justify-content: space-between">
             <h2>Категория</h2>
-            <h2>{{productCategory}}</h2>
+            <h2 class="black-font">{{productProps.category}}</h2>
         </div>
-        <div style="display: flex; justify-content: space-around">
+        <div style="display: flex; justify-content: space-between">
             <h2>Название</h2>
-            <h2>{{productName}}</h2>
+            <h2 class="black-font">{{productProps.name}}</h2>
+        </div>
+        <div style="display: flex; justify-content: space-between">
+            <h2>Остаток</h2>
+            <h2 class="black-font">{{productProps.stockBalance ? productProps.stockBalance : 0}}</h2>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['category', 'name'],
+        props: ['productProps'],
 
         data: () => ({
-            productCategory: '',
-            productName: ''
+            product: {}
         }),
 
         mounted() {
-            this.productCategory = this.category
+            this.product = this.productProps
         }
     }
 </script>
@@ -31,9 +34,13 @@
     position: relative;
     box-sizing: border-box;
     border: 2px solid dimgrey;
-    padding: 3px;
+    padding: 0px 10px;
     border-radius: 5px;
     width: 90%;
     margin: 10px auto;
+}
+
+.black-font {
+    color: black;
 }
 </style>

@@ -2,7 +2,7 @@
     <h1>Фильтры</h1>
     <div class="vertical-centralize">
         <h2>Выбирите категорию</h2>
-        <select class="my-select">
+        <select class="my-select" @change="setCategory($event)">
             <option value="0">все категории</option>
 
             <option v-for="category in categories" :key="category.name" :value="category.name">{{category.name}}</option>
@@ -18,11 +18,11 @@
     <hr style="margin-top: 30px">
     <div style="position: relative; padding-top: 10px">
         <h1 style="margin-bottom: 20px; margin-top: 5px">Список товаров</h1>
-        <button class="btn new-product-btn">+1</button>
+        <button class="btn new-product-btn" @click="$router.push(`/product/new`)">+1</button>
 
         <hr>
 
-        <Product category="" name="" />
+        <Product v-for="product in products" :key="product.id" :product-props="product" />
 
     </div>
 </template>
@@ -34,18 +34,36 @@
         components: {Product},
 
         data: () => ({
-            checkbox: false
+            checkbox: false,
+            category: '0'
         }),
 
         computed: {
             categories() {
                 return this.$store.state.categories
+            },
+
+            products() {
+                const products = this.$store.state.products;
+                if (this.category === '0' && !this.checkbox) return products
+
+                if (this.category === '0' && this.checkbox) return products.filter(product => {
+                    if (product.stockBalance) return product.stockBalance
+                })
+                if (this.category !== '0' && !this.checkbox) return products.filter(product => product.category === this.category)
+                return products.filter(product => {
+                    if (product.stockBalance && product.category === this.category) return product
+                })
             }
         },
 
         methods: {
             checkboxHandler() {
 
+            },
+
+            setCategory(event) {
+                this.category = event.target.value
             }
         },
 
