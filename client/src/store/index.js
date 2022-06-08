@@ -8,10 +8,15 @@ export default createStore({
   state: {
     showMenu: false,
     categories: [],
-    products: []
+    products: [],
+    isNewProduct: false
   },
 
   mutations: {
+    setNewProduct(state, payload) {
+      state.isNewProduct = payload
+    },
+
     toggleMenu(state) {
       state.showMenu = !state.showMenu;
     },

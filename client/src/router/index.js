@@ -10,7 +10,8 @@ import ProductPage from "../views/ProductPage";
 export const routes = [
   {
     path: '/',
-    component: Home
+    component: Home,
+    ru: ''
   },
   {
     path: '/category',
@@ -38,7 +39,9 @@ export const routes = [
     ru: 'Поступления'
   },
   {
-    path: '/product/:id', component: ProductPage
+    path: '/product/:id',
+    component: ProductPage,
+    ru: ''
   }
 
 ]

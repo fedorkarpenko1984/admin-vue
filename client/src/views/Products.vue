@@ -17,7 +17,7 @@
 
     <hr style="margin-top: 30px">
     <div style="position: relative; padding-top: 10px">
-        <h1 style="margin-bottom: 20px; margin-top: 5px">Список товаров</h1>
+        <h1 style="margin-bottom: 20px; margin-top: 5px">Товары</h1>
         <button class="btn new-product-btn" @click="$router.push(`/product/new`)">+1</button>
 
         <hr>

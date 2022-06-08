@@ -14,7 +14,7 @@
 
     export default {
         data: () => ({
-            routes: routes.filter(route => route.path !== '/')
+            routes: routes.filter(route => route.ru !== '')
         }),
 
         computed: {
