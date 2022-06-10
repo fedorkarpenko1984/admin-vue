@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { JSON_DB_READ_NOTES, JSON_DB_ADD_NOTE, JSON_DB_REMOVE_NOTE } = require('../JSON_DB/JSON_DP_HANDLER')
+const { JSON_DB_READ_NOTES, JSON_DB_ADD_NOTE, JSON_DB_REMOVE_NOTE } = require('../JSON_DB/JSON_DB_HANDLER')
 const router = Router()
 
 // api/categories/list
@@ -25,8 +25,11 @@ router.post('/create', (req, res) => {
 // api/categories/remove
 router.post('/remove', (req, res) => {
     try {
-        const removedCategory = req.body
-        JSON_DB_REMOVE_NOTE('categories', 'name', removedCategory.name)
+        const removedCategoryName = req.body.name
+
+        console.log(removedCategoryName)
+
+        JSON_DB_REMOVE_NOTE('categories', 'name', removedCategoryName)
         res.status(204).send()
     } catch (e) {
         res.status(500).json({message: 'ШЕФ! УСЁ ПРОПАЛО!'})

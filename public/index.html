@@ -15,30 +15,50 @@
     const input = document.getElementById('file')
 
     document.getElementById('button').addEventListener('click', () => {
-        const file = input.files[0]
 
-        const reader = new FileReader()
 
-        reader.onloadend = () => {
+        axios('http://localhost:5000/api/products/delete').then(res => console.log(res))
 
-            const formData = new FormData()
-            formData.append('photo', file)
-            formData.append('test', 'test')
-            formData.append('test2', 'test2')
 
-            console.log(formData)
+        // const formData = new FormData()
+        //     formData.append('test', 'test')
+        //     formData.append('test2', 'test2')
+        //
+        //     console.log('formData', formData)
+        //
+        //     axios.post("http://localhost:5000/api/products/create", formData, {
+        //         headers: {
+        //             "Content-Type": "multipart/form-data",
+        //         },
+        //     }).then(res => {
+        //         console.log(res)
+        //     })
 
-            axios.post("http://localhost:5000/api/products/create", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            }).then(res => {
-                console.log(res)
-            })
 
-        }
-
-        reader.readAsArrayBuffer(file);
+        // const file = input.files[0]
+        //
+        // const reader = new FileReader()
+        //
+        // reader.onloadend = () => {
+        //
+        //     const formData = new FormData()
+        //     formData.append('photo', file)
+        //     formData.append('test', 'test')
+        //     formData.append('test2', 'test2')
+        //
+        //     console.log('formData', formData)
+        //
+        //     axios.post("http://localhost:5000/api/products/create", formData, {
+        //         headers: {
+        //             "Content-Type": "multipart/form-data",
+        //         },
+        //     }).then(res => {
+        //         console.log(res)
+        //     })
+        //
+        // }
+        //
+        // reader.readAsArrayBuffer(file);
     })
 
 

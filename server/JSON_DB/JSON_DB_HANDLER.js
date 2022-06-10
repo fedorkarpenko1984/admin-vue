@@ -26,8 +26,14 @@ const JSON_DB_REMOVE_NOTE = (DB_NAME, SEARCH_PARAM, value) => {
 
 const JSON_DB_REPLACE_NOTE = (DB_NAME, SEARCH_PARAM, NEW_NOTE) => {
     let DB = JSON.parse(JSON_DB_READ_NOTES(DB_NAME))
-    DB = DB.filter(note => note[SEARCH_PARAM] !== NEW_NOTE[SEARCH_PARAM])
-    JSON_DB_WRITE_NOTES(DB_NAME, DB.push(NEW_NOTE))
+    DB = DB.filter(note => note.id !== NEW_NOTE.id)
+    DB.push(NEW_NOTE)
+    JSON_DB_WRITE_NOTES(DB_NAME, DB)
+}
+
+const JSON_DB_GET_NOTE = (DB_NAME, SEARCH_PARAM, value) => {
+    let DB = JSON.parse(JSON_DB_READ_NOTES(DB_NAME))
+    return DB.filter(note => note[SEARCH_PARAM] === value)[0]
 }
 
 module.exports = {
@@ -35,5 +41,6 @@ module.exports = {
     JSON_DB_WRITE_NOTES,
     JSON_DB_ADD_NOTE,
     JSON_DB_REMOVE_NOTE,
-    JSON_DB_REPLACE_NOTE
+    JSON_DB_REPLACE_NOTE,
+    JSON_DB_GET_NOTE
 }

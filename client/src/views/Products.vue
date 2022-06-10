@@ -87,14 +87,6 @@
     box-shadow: 0px 0px 1px 1px dimgrey;
 }
 
-.my-select {
-    margin-top: 10px;
-    height: 35px;
-    font-size: 20px;
-    outline: none;
-    border-radius: 5px;
-}
-
 .custom-checkbox {
     width: 25px;
     height: 25px;

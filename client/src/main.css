@@ -45,6 +45,14 @@ hr {
     transition: all 0.5s;
 }
 
+.my-select {
+    margin-top: 10px;
+    height: 35px;
+    font-size: 20px;
+    outline: none;
+    border-radius: 5px;
+}
+
 .input {
     outline: none;
     border: none;
